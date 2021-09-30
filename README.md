@@ -1,3 +1,7 @@
+# Hi There
+So I made this for freeCodeCamp's Arithmetic Formatter challenge. It works but when I test it using main.py it fails and I have no idea why🤔🤷‍♂️
+
+
 ### Assignment
 
 Students in primary school often arrange arithmetic problems vertically to make them easier to solve. For example, "235 + 52" becomes:
