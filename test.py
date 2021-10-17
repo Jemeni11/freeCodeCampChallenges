@@ -15,8 +15,7 @@ def arithmetic_arranger(problems, ans=False):
             if '+' in i or '-' in i:
                 expr = i.partition('+') if '+' in i else i.partition('-')
             else:
-                print("Error: Operator must be '+' or '-'.")
-                break
+                return "Error: Operator must be '+' or '-'."
 
             # Possible Error 3
             # If the input given is not a number.
@@ -25,14 +24,12 @@ def arithmetic_arranger(problems, ans=False):
                 oper = expr[1]
                 second = int(expr[2])
             else:
-                print('Error: Numbers must only contain digits.')
-                break
+                return 'Error: Numbers must only contain digits.'
 
             # Possible Error 4
             # If the number length is greater than four.
             if len(expr[0].strip()) > 4 or len(expr[2].strip()) > 4:
-                print('Error: Numbers cannot be more than four digits.')
-                break
+                return 'Error: Numbers cannot be more than four digits.'
 
             if first == second:
                 # Returning the string
@@ -66,7 +63,7 @@ def arithmetic_arranger(problems, ans=False):
 
     # If the number of problems is greater than 5 then an error is returned.
     else:
-        print('Error: Too many problems.')
+         return 'Error: Too many problems.'
 
     print(top_equation)
     print(bottom_equation)
