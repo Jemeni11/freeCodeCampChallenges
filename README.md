@@ -1,5 +1,5 @@
 # Hi There
-So I made this for freeCodeCamp's Arithmetic Formatter challenge. It works but when I test it using main.py it fails and I have no idea why🤔🤷‍♂️
+My solution to freeCodeCamp's Arithmetic Formatter challenge.
 
 
 ### Assignment
