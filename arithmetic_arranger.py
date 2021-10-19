@@ -3,6 +3,7 @@ def arithmetic_arranger(problems, ans=False):
     bottom_equation = ""
     final_dash = ""
     answer = ""
+    answer_exists = ""
 
     # Possible Error 1
     # If there are more than 5 problems.
@@ -14,61 +15,36 @@ def arithmetic_arranger(problems, ans=False):
             # If the operators are not addition or subtraction.
             if '+' in i or '-' in i:
                 expr = i.partition('+') if '+' in i else i.partition('-')
+                first_num = expr[0].strip()
+                second_num = expr[2].strip()
+
+                # Possible Error 3
+                # If the input given is not a number.
+                if first_num.isdigit() and second_num.isdigit():
+                    operator = expr[1]
+                else:
+                    return 'Error: Numbers must only contain digits.'
+
+                # Possible Error 4
+                # If the number length is greater than four.
+                if len(first_num) > 4 or len(second_num) > 4:
+                    return 'Error: Numbers cannot be more than four digits.'
+                else:
+                    num_length = len(max([first_num, second_num], key=len))
+                    top = f"{first_num.rjust(num_length + 2)}    "
+                    bottom = f"{operator}{second_num.rjust(num_length + 1)}    "
+                    dash = f"{'-' * (num_length + 2)}    "
             else:
-                print("Error: Operator must be '+' or '-'.")
-                break
-
-            # Possible Error 3
-            # If the input given is not a number.
-            if expr[0].strip().isdigit() and expr[2].strip().isdigit():
-                first = int(expr[0])
-                oper = expr[1]
-                second = int(expr[2])
-            else:
-                print('Error: Numbers must only contain digits.')
-                break
-
-            # Possible Error 4
-            # If the number length is greater than four.
-            if len(expr[0].strip()) > 4 or len(expr[2].strip()) > 4:
-                print('Error: Numbers cannot be more than four digits.')
-                break
-
-            if first == second:
-                # Returning the string
-                top = f"  {expr[0].strip()} " + "    "
-                bottom = f"{oper} {expr[2].strip()} " + "    "
-
-                dash_length = len(expr[0].strip()) + 2
-                dash = f'{"-" * dash_length}' + "     "
-            else:
-                # Find the biggest number
-                greatest = first if first > second else second
-                great = str(greatest)
-
-                # Returning the string
-                x = len(great) - len(expr[0].strip())
-                y = len(great) - len(expr[2].strip())
-
-                top = "  " + f"{' ' * x}" + str(expr[0].strip()) + "    "
-                bottom = f'{oper}' + " " + f'{" " * y}' + str(expr[2].strip()) + "    "
-
-                dash_length = len(f'{oper}' + " " + f'{" " * y}' + str(expr[2].strip()))
-                dash = f'{"-" * dash_length}' + f'{" " * 4}'
-
-            if ans:
-                whitespace = dash_length - len(str(eval(i)))
-                answer += f'{" "*whitespace}{eval(i)}    ' if not first == second else f'{" "*whitespace}{eval(i)}     '
+                return "Error: Operator must be '+' or '-'."
 
             top_equation += top
             bottom_equation += bottom
             final_dash += dash
+            if ans:
+                answer += f"{str(eval(i)).rjust(num_length + 2)}    "
+                answer_exists = "\n"
+
+        return f"{top_equation.rstrip()}\n{bottom_equation.rstrip()}\n{final_dash.rstrip()}{answer_exists}{answer.rstrip()}"
 
     # If the number of problems is greater than 5 then an error is returned.
-    else:
-        print('Error: Too many problems.')
-
-    print(top_equation)
-    print(bottom_equation)
-    print(final_dash)
-    print(answer)
+    return 'Error: Too many problems.'
