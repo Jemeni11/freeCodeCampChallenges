@@ -1,6 +1,3 @@
-from typing import final
-
-
 class Category:
     def __init__(self, category_name):
         self.ledger = []
